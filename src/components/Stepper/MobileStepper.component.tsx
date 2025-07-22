@@ -26,7 +26,7 @@ const MobileStepper: React.FC<Props> = ({ steps, currentStep, onBack, onExit }) 
   const completedSteps = steps.slice(0, currentStep);
 
   return (
-    <div className={`${styles.mobileStepperContainer} ${isDark ? styles.dark : styles.light}`}>
+    <div className={`${styles.container} ${isDark ? styles.dark : styles.light}`}>
       {/* Back/Exit Button */}
       <button 
         className={`${styles.navButton} ${isDark ? styles.navButtonDark : styles.navButtonLight}`}
@@ -35,17 +35,17 @@ const MobileStepper: React.FC<Props> = ({ steps, currentStep, onBack, onExit }) 
         ← {isFirstStep ? "Exit" : "Back"}
       </button>
 
-      {/* Steps Display */}
-      <div className={styles.stepsDisplay}>
+      {/* Center Section - Completed Steps + Current Step */}
+      <div className={styles.centerSection}>
         {/* Completed Steps */}
         {completedSteps.map((step, index) => (
-          <div key={`completed-${index}`} className={`${styles.stepCircle} ${styles.completed}`}>
+          <div key={`completed-${index}`} className={`${styles.stepIcon} ${styles.completed}`}>
             {step.icon}
           </div>
         ))}
 
         {/* Current Step */}
-        <div className={`${styles.stepCircle} ${styles.active}`}>
+        <div className={`${styles.stepIcon} ${styles.active}`}>
           {currentStepData.icon}
         </div>
 
@@ -54,24 +54,21 @@ const MobileStepper: React.FC<Props> = ({ steps, currentStep, onBack, onExit }) 
           {currentStepData.label}
         </span>
 
-        {/* Progress Line to Next Step (if not last step) */}
-        {!isLastStep && (
-          <div className={styles.progressLine} />
-        )}
-
-        {/* Next Step (if exists) */}
+        {/* Progress Line to Next Step (if exists) */}
         {nextStepData && (
-          <div className={`${styles.stepCircle} ${styles.upcoming}`}>
-            {nextStepData.icon}
-          </div>
+          <div className={styles.progressLine} />
         )}
       </div>
 
-      {/* Right Action Icon */}
-      <div className={`${styles.rightAction} ${isDark ? styles.rightActionDark : styles.rightActionLight}`}>
-        <div className={styles.actionIcon}>
-          📋
-        </div>
+      {/* Right Section - Next Step Icon */}
+      <div className={styles.rightSection}>
+        {nextStepData ? (
+          <div className={`${styles.stepIcon} ${styles.upcoming}`}>
+            {nextStepData.icon}
+          </div>
+        ) : (
+          <div className={styles.placeholder} />
+        )}
       </div>
     </div>
   );

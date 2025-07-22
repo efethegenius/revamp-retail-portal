@@ -1,5 +1,5 @@
 /* Mobile Stepper Container */
-.mobileStepperContainer {
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,6 @@
   border: 1px solid var(--grey-300);
   border-radius: 12px;
   padding: 0 16px;
-  gap: 12px;
   font-family: var(--regular-font-family);
   transition: all 0.3s ease;
 }
@@ -58,17 +57,18 @@
   background-color: var(--grey-600);
 }
 
-/* Steps Display */
-.stepsDisplay {
+/* Center Section */
+.centerSection {
   display: flex;
   align-items: center;
   flex: 1;
   gap: 8px;
-  min-height: 40px;
+  justify-content: center;
+  position: relative;
 }
 
-/* Step Circle */
-.stepCircle {
+/* Step Icon */
+.stepIcon {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -78,7 +78,6 @@
   font-size: 14px;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  position: relative;
 }
 
 /* Step States */
@@ -116,7 +115,7 @@
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
-  margin: 0 8px;
+  margin: 0 12px;
 }
 
 .stepLabelLight {
@@ -130,47 +129,33 @@
 /* Progress Line */
 .progressLine {
   height: 2px;
-  width: 40px;
+  width: 60px;
   background-color: var(--grey-300);
   flex-shrink: 0;
 }
 
-/* Right Action */
-.rightAction {
+/* Right Section */
+.rightSection {
   flex-shrink: 0;
-}
-
-.actionIcon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--grey-300);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  transition: all 0.3s ease;
 }
 
-.rightActionLight .actionIcon {
-  background-color: var(--grey-25);
-  border-color: var(--grey-300);
-}
-
-.rightActionDark .actionIcon {
-  background-color: var(--grey-700);
-  border-color: var(--grey-600);
+.placeholder {
+  width: 32px;
+  height: 32px;
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
-  .mobileStepperContainer {
+  .container {
     max-width: 100%;
     padding: 0 12px;
     gap: 8px;
   }
   
-  .stepCircle {
+  .stepIcon {
     width: 28px;
     height: 28px;
     font-size: 12px;
@@ -183,19 +168,19 @@
   
   .stepLabel {
     font-size: 12px;
+    margin: 0 8px;
   }
   
   .progressLine {
-    width: 30px;
+    width: 40px;
   }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .mobileStepperContainer,
-  .stepCircle,
-  .navButton,
-  .actionIcon {
+  .container,
+  .stepIcon,
+  .navButton {
     transition: none;
   }
 }
