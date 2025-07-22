@@ -1,219 +1,186 @@
-/* Stepper.module.css */
-
-.stepperWrapper {
+/* Stepper Container */
+.stepperContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
-  padding: 16px 20px;
-  border-radius: 16px;
-  gap: 20px;
-  white-space: nowrap;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  overflow-x: auto;
-  gap: 12px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.desktop {
-  flex-direction: row;
-}
-
-.mobile {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: #bbb;
-  padding: 8px 16px;
-  border-radius: 14px;
-  transition: all 0.3s ease-in-out;
-  height: 44px;
-  background-color: transparent;
-  white-space: nowrap;
-  border: none;
-  min-width: 140px;
-  justify-content: center;
-}
-
-.step.completed {
-  background-color: transparent;
-  /* background-color: #00c8ff; */
-  color: var(--grey-300);
-  font-weight: 600;
-}
-
-.step.active {
-  color: #0a9dc2;
-  font-weight: 700;
-}
-
-.step.upcoming {
-  background-color: transparent;
-  color: var(--grey-400);
-}
-
-.step .label {
-  margin-left: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dot {
-  color: #d0d0d0;
-  margin: 0 6px;
-  font-size: 20px;
-  line-height: 1;
-  align-self: center;
-}
-
-/* StepIcon.module.css */
-
-.icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
-  background-color: transparent;
-  border: 2px solid transparent;
-}
-
-.completed .icon,
-.next .icon {
-  background-color: #00c8ff;
-  color: white;
-}
-
-.active .icon {
-  background-color: transparent;
-  color: #00c8ff !important;
-  border: 2px solid #00c8ff;
-}
-
-.upcoming .icon {
-  color: #bbb;
-}
-
-/* StepperContainer.module.css */
-
-.container {
-  padding: 0;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 16px;
-  flex-wrap: nowrap;
-}
-
-.light {
-  background-color: var(--grey-25);
-  --stepper-bg: #f5f5f5;
-  color: var(--grey-400);
-}
-
-.dark {
-  background-color: #181818;
-  color: white;
-  --stepper-bg: #202020;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-  height: 100%;
-}
-
-.navButton {
-  background-color: white;
-  border: 1px solid #cccccc;
-  padding: 8px 14px;
+  width: 100%;
+  max-width: 350px;
+  height: 60px;
+  background-color: var(--white);
+  border: 1px solid var(--grey-300);
   border-radius: 12px;
-  font-weight: 600;
+  padding: 0 16px;
+  gap: 16px;
+  font-family: var(--regular-font-family);
+}
+
+/* Navigation Button */
+.navButton {
+  background: transparent;
+  border: 1px solid var(--grey-300);
+  border-radius: 8px;
+  padding: 8px 12px;
   font-size: 14px;
-  color: #333;
+  font-weight: 500;
+  color: var(--grey-700);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.2s ease;
+  white-space: nowrap;
   flex-shrink: 0;
-  height: 40px;
 }
 
-.dark .navButton {
-  background-color: #222;
-  color: #f5f5f5;
-  border: 1px solid #555;
+.navButton:hover {
+  background-color: var(--grey-25);
+  border-color: var(--grey-400);
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 12px 0px;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Steps Wrapper */
+.stepsWrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  gap: 8px;
+  min-height: 40px;
+}
 
-  .stepperWrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
+/* Step Circle */
+.stepCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  z-index: 2;
+  position: relative;
+}
 
-  .stepper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    width: 100%;
-  }
+/* Step States */
+.completed {
+  background-color: var(--secondary);
+  color: var(--white);
+  border: 2px solid var(--secondary);
+}
 
-  .step {
-    width: 100%;
-    justify-content: flex-start;
-  }
+.active {
+  background-color: var(--white);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+}
 
-  .dot {
-    display: none;
-  }
+.upcoming {
+  background-color: var(--grey-25);
+  color: var(--grey-400);
+  border: 2px solid var(--grey-300);
+}
 
-  .nav {
-    width: 100%;
-    justify-content: flex-start;
+/* Progress Line */
+.progressLine {
+  height: 2px;
+  flex: 1;
+  min-width: 20px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.progressLineCompleted {
+  background-color: var(--secondary);
+}
+
+.progressLineIncomplete {
+  background-color: var(--grey-300);
+}
+
+/* Step Label */
+.stepLabel {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--secondary);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Right Action */
+.rightAction {
+  flex-shrink: 0;
+}
+
+.actionIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--grey-25);
+  border: 1px solid var(--grey-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Dark Mode Support */
+:global(.dark) .stepperContainer {
+  background-color: var(--grey-800);
+  border-color: var(--grey-600);
+}
+
+:global(.dark) .navButton {
+  background-color: var(--grey-700);
+  border-color: var(--grey-600);
+  color: var(--white-100);
+}
+
+:global(.dark) .navButton:hover {
+  background-color: var(--grey-600);
+}
+
+:global(.dark) .upcoming {
+  background-color: var(--grey-700);
+  border-color: var(--grey-600);
+  color: var(--grey-400);
+}
+
+:global(.dark) .active {
+  background-color: var(--grey-800);
+}
+
+:global(.dark) .stepLabel {
+  color: var(--secondary);
+}
+
+:global(.dark) .actionIcon {
+  background-color: var(--grey-700);
+  border-color: var(--grey-600);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .stepperContainer {
+    max-width: 100%;
+    padding: 0 12px;
     gap: 12px;
   }
-
-  .navButton {
-    height: auto;
+  
+  .stepCircle {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
   }
-}
-/* 
-/* .stepIcon {
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-  display: block;
-} */
-/* Only when parent .step is active */
-.step.active .stepIcon {
-  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(743%)
-    hue-rotate(164deg) brightness(99%) contrast(99%);
+  
+  .navButton {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .stepLabel {
+    font-size: 11px;
+    bottom: -20px;
+  }
 }

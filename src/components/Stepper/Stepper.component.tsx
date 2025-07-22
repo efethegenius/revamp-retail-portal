@@ -1,41 +1,62 @@
 import React from "react";
-import StepIcon from "./StepIcon";
 import styles from "./Stepper.module.css";
 
 interface StepProps {
   label: string;
-  status: "completed" | "active" | "next" | "upcoming";
+  status: "completed" | "active" | "upcoming";
   icon: React.ReactNode;
 }
 
 interface Props {
   steps: StepProps[];
-  isMobile?: boolean;
-  onStepClick: (index: number) => void;
+  currentStep: number;
+  onBack?: () => void;
+  onExit?: () => void;
 }
 
-const Stepper: React.FC<Props> = ({ steps, isMobile = false, onStepClick }) => {
-  console.log(isMobile);
+const Stepper: React.FC<Props> = ({ steps, currentStep, onBack, onExit }) => {
+  const isFirstStep = currentStep === 0;
+
   return (
-    <div
-      className={`${styles.stepper} ${
-        isMobile ? styles.mobile : styles.desktop
-      }`}
-    >
-      {steps.map((step, i) => (
-        <div
-          key={step.label}
-          className={`${styles.step} ${styles[step.status]}`}
-          onClick={() => onStepClick(i)}
-        >
-          <StepIcon icon={step.icon} status={step.status} />
-          {isMobile && step.status === "active" && (
-            <span className={styles.label}>{step.label}</span>
-          )}
-          {!isMobile && <span className={styles.label}>{step.label}</span>}
-          {i < steps.length - 1 && <span className={styles.dot}>·</span>}
+    <div className={styles.stepperContainer}>
+      {/* Back/Exit Button */}
+      <button 
+        className={styles.navButton}
+        onClick={isFirstStep ? onExit : onBack}
+      >
+        ← {isFirstStep ? "Exit" : "Back"}
+      </button>
+
+      {/* Steps Container */}
+      <div className={styles.stepsWrapper}>
+        {steps.map((step, index) => (
+          <React.Fragment key={step.label}>
+            {/* Step Circle */}
+            <div className={`${styles.stepCircle} ${styles[step.status]}`}>
+              {step.icon}
+            </div>
+
+            {/* Progress Line (except after last step) */}
+            {index < steps.length - 1 && (
+              <div className={`${styles.progressLine} ${
+                index < currentStep ? styles.progressLineCompleted : styles.progressLineIncomplete
+              }`} />
+            )}
+          </React.Fragment>
+        ))}
+
+        {/* Current Step Label */}
+        <div className={styles.stepLabel}>
+          {steps[currentStep]?.label}
         </div>
-      ))}
+      </div>
+
+      {/* Right Action Button (placeholder) */}
+      <div className={styles.rightAction}>
+        <div className={styles.actionIcon}>
+          📋
+        </div>
+      </div>
     </div>
   );
 };

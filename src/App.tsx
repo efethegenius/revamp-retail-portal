@@ -23,7 +23,7 @@ import {
   FaUpload,
   FaPaperPlane,
 } from "react-icons/fa";
-import StepperPage from "./components/Stepper/StepperPage";
+import Stepper from "./components/Stepper/Stepper.component";
 
 function App() {
   const [, setCount] = useState(0);
@@ -33,7 +33,7 @@ function App() {
   // const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [passwordVal, setPasswordVal] = useState("");
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStepperStep, setCurrentStepperStep] = useState(0);
 
   const handleThemeToggle = (isDark: boolean) => {
     setIsDarkTheme(isDark);
@@ -45,13 +45,22 @@ function App() {
     // Implement logout logic here
   };
 
-  const steps = [
-    { title: "Select Product", icon: <FaBox /> },
-    { title: "Get Quote", icon: <FaFileInvoice /> },
-    { title: "Additional Information", icon: <FaFileAlt /> },
-    { title: "Upload document", icon: <FaUpload /> },
-    { title: "Submit", icon: <FaPaperPlane /> },
+  const stepperSteps = [
+    { label: "Select Product", status: "completed" as const, icon: <FaBox /> },
+    { label: "Get Quote", status: "completed" as const, icon: <FaFileInvoice /> },
+    { label: "Additional Information", status: "active" as const, icon: <FaFileAlt /> },
+    { label: "Upload Documents", status: "upcoming" as const, icon: <FaUpload /> },
+    { label: "Pay", status: "upcoming" as const, icon: <FaPaperPlane /> },
   ];
+
+  const updateStepperSteps = (currentStep: number) => {
+    return stepperSteps.map((step, index) => ({
+      ...step,
+      status: index < currentStep ? "completed" as const : 
+              index === currentStep ? "active" as const : 
+              "upcoming" as const
+    }));
+  };
 
   return (
     <div
@@ -308,26 +317,43 @@ function App() {
           placeholder="Search"
         />
       </div>
-      <div className={styles.dsContainer}>
-        <div className="p-4 space-y-6">
-          <StepperPage
-            currentStep={currentStep}
-            onStepChange={(i: number) => {
-              setCurrentStep(i);
-            }}
-            isMobile={window.screen.availWidth < 1024}
-            isDark={false} // or false for white background
-          />
-          {/* {[0, 1, 2, 3, 4].map((step) => (
-            <StepperPage
-              key={step}
-              currentStep={step}
-              onStepChange={() => {}}
-              isMobile={false}
-              isDark={false} // or false for white background
-            />
-          ))} */}
-        </div>
+
+      <h2>Stepper Component</h2>
+      <div className={`${styles.dsContainer}`}>
+        <Stepper
+          steps={updateStepperSteps(currentStepperStep)}
+          currentStep={currentStepperStep}
+          onBack={() => {
+            if (currentStepperStep > 0) {
+              setCurrentStepperStep(currentStepperStep - 1);
+            }
+          }}
+          onExit={() => {
+            console.log("Exit clicked");
+            setCurrentStepperStep(0);
+          }}
+        />
+      </div>
+
+      <div className={`${styles.dsContainer}`} style={{ marginTop: "20px" }}>
+        <button 
+          onClick={() => {
+            if (currentStepperStep < stepperSteps.length - 1) {
+              setCurrentStepperStep(currentStepperStep + 1);
+            }
+          }}
+          disabled={currentStepperStep >= stepperSteps.length - 1}
+          style={{
+            padding: "8px 16px",
+            backgroundColor: currentStepperStep >= stepperSteps.length - 1 ? "#ccc" : "#02ccfe",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: currentStepperStep >= stepperSteps.length - 1 ? "not-allowed" : "pointer"
+          }}
+        >
+          Next Step (Demo)
+        </button>
       </div>
 
       <h2>Header Component</h2>
