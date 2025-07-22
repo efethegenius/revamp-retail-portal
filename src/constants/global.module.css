@@ -1,0 +1,164 @@
+@import url("../constants/colors.css");
+
+.dsBodyContainerLight,
+.dsBodyContainerDark {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 500px;
+  padding: 0 50px;
+  background-color: var(--white);
+}
+
+.dsBodyContainerDark {
+  background-color: var(--black);
+}
+
+.dsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px !important;
+  margin: 20px 0;
+}
+.custom {
+  width: 100%;
+  max-width: 350px;
+}
+
+.dsDark {
+  background-color: var(--grey-700);
+}
+
+/* === Dark Mode Box Variants === */
+.defaultBoxDark {
+  width: 100%;
+  max-width: 350px;
+  height: 50px;
+  background-color: var(--grey-700);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.3s ease;
+}
+
+.withLabelBoxDark {
+  width: 100%;
+  max-width: 350px;
+  height: 62px;
+  background-color: var(--grey-700);
+  border-radius: 12px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: border-color 0.3s ease;
+}
+
+.neutralBoxDark {
+  background-color: var(--grey-700);
+  border-radius: 12px;
+  height: 62px;
+  color: var(--white-100);
+  transition: border-color 0.3s ease;
+}
+
+/* === Dark Mode Input + Label === */
+.inputFieldDark {
+  color: var(--white-100) !important;
+  background-color: transparent !important;
+  caret-color: var(--white-100) !important;
+}
+
+.inputFieldDark::placeholder {
+  color: var(--white-100) !important;
+}
+
+.labelDark {
+  color: var(--purple-200);
+}
+
+.hasValue .inputField {
+  color: var(--white-100);
+}
+
+.hasValue .inputField::placeholder {
+  color: var(--white-100);
+}
+
+/* === Dark Mode: Disabled Input Field === */
+.darkInputBoxDisabled {
+  background-color: var(--grey-1100) !important;
+}
+
+.darkInputBoxDisabled .inputField,
+.darkInputBoxDisabled .inputField::placeholder,
+.darkInputBoxDisabled .insideLabel {
+  color: var(white) !important;
+}
+
+/* === Dark Mode: Error Input Styling === */
+.darkInputBoxError .inputField,
+.darkInputBoxError .inputField::placeholder,
+.darkInputBoxError .insideLabel {
+  color: var(--white-100) !important;
+}
+
+.darkErrorFeedback {
+  color: var(--error-500) !important;
+}
+.labelGreyDark {
+  color: var(--grey-300) !important;
+}
+/* === Dark Mode: Error Input Field === */
+
+.labelError {
+  color: var(--error-500);
+}
+
+.inputFieldErrorDark {
+  color: var(--white-100) !important;
+}
+
+.inputFieldErrorDark::placeholder {
+  color: var(--white-100) !important;
+}
+
+.darkCountryCode {
+  color: var(--white-100);
+}
+
+/* Bright icon for active state in dark mode */
+.eyeToggleBright {
+  color: var(--white-100);
+}
+
+/* Dull icon for disabled state in dark mode */
+.eyeToggleDarkDisabled {
+  color: var(--grey-500);
+}
+/* Light Mode Autofill Fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background-color: var(--white-100) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--white-100) inset !important;
+  box-shadow: 0 0 0px 1000px var(--white-100) inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+  transition: background-color 9999s ease-out 0s !important;
+}
+
+/* Dark Mode Autofill Fix - use .dark on <html> */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  background-color: var(--grey-100) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--grey-100) inset !important;
+  box-shadow: 0 0 0px 1000px var(--grey-900) inset !important;
+  -webkit-text-fill-color: white !important;
+  color: white !important;
+  transition: background-color 9999s ease-out 0s !important;
+}
