@@ -4,4 +4,8 @@ export const SESSION_TIMEOUT = 30; // in minutes
 
 export const loadingButtonLabel = "Loading...";
 
-export const isDark = false;
+export let isDark = false;
+
+export const setIsDark = (value: boolean) => {
+  isDark = value;
+};

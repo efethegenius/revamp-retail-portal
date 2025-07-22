@@ -1,8 +1,10 @@
 import { useState } from "react";
+import Header from "./components/Header/Header.component";
 import PrimaryButton from "./components/button/PrimaryButton.component";
 // import light from "./assets/lightbulb-filament.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { isDark as initialIsDark } from "./constants/data";
 import DestructiveButton from "./components/button/DestructiveButton.component";
 import SecondaryButton from "./components/button/SecondaryButton.component";
 import TextInput from "./components/TextInputField/TextInput.component";
@@ -26,11 +28,22 @@ import StepperPage from "./components/Stepper/StepperPage";
 function App() {
   const [, setCount] = useState(0);
   const [loading] = useState(true);
+  const [isDarkTheme, setIsDarkTheme] = useState(initialIsDark);
   // const [someVal, setSomeVal] = useState("");
   // const [password, setPassword] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [passwordVal, setPasswordVal] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
+
+  const handleThemeToggle = (isDark: boolean) => {
+    setIsDarkTheme(isDark);
+    // You can also update your global isDark constant here if needed
+  };
+
+  const handleLogout = () => {
+    console.log("Logout clicked");
+    // Implement logout logic here
+  };
 
   const steps = [
     { title: "Select Product", icon: <FaBox /> },
@@ -43,9 +56,10 @@ function App() {
   return (
     <div
       className={
-        isDark ? styles.dsBodyContainerDark : styles.dsBodyContainerLight
+        isDarkTheme ? styles.dsBodyContainerDark : styles.dsBodyContainerLight
       }
     >
+      <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
       <h1>Primary Button</h1>
       <div className={`${styles.dsContainer}`}>
         <PrimaryButton
