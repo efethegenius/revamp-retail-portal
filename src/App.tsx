@@ -181,10 +181,7 @@ function App() {
 
       <h2>Text Inputs</h2>
 
-      <h2>Header Component</h2>
-      <div className={`${styles.dsContainer}`}>
-        <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
-      </div>
+      
 
       <div className={`${styles.dsContainer}`}>
         <TextInput placeholder="Input Label" />
@@ -331,6 +328,11 @@ function App() {
             />
           ))} */}
         </div>
+      </div>
+
+      <h2>Header Component</h2>
+      <div className={`${styles.dsContainer}`}>
+        <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
       </div>
     </div>
   );
