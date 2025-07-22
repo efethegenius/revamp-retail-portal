@@ -13,6 +13,7 @@ import TelephoneInput from "./components/TextInputField/TelephoneInput.component
 import Dropdown from "./components/TextInputField/Dropdown.component";
 import SearchBox from "./components/TextInputField/SearchBox.component";
 import { isDark } from "./constants/data";
+import MobileStepper from "./components/Stepper/MobileStepper.component";
 
 import styles from "../src/constants/global.module.css";
 
@@ -321,6 +322,23 @@ function App() {
       <h2>Stepper Component</h2>
       <div className={`${styles.dsContainer}`}>
         <Stepper
+          steps={updateStepperSteps(currentStepperStep)}
+          currentStep={currentStepperStep}
+          onBack={() => {
+            if (currentStepperStep > 0) {
+              setCurrentStepperStep(currentStepperStep - 1);
+            }
+          }}
+          onExit={() => {
+            console.log("Exit clicked");
+            setCurrentStepperStep(0);
+          }}
+        />
+      </div>
+
+      <h2>Mobile Stepper Component</h2>
+      <div className={`${styles.dsContainer}`}>
+        <MobileStepper
           steps={updateStepperSteps(currentStepperStep)}
           currentStep={currentStepperStep}
           onBack={() => {

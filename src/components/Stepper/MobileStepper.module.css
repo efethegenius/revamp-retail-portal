@@ -1,0 +1,207 @@
+/* Mobile Stepper Container */
+.mobileStepperContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  height: 60px;
+  border: 1px solid var(--grey-300);
+  border-radius: 12px;
+  padding: 0 16px;
+  gap: 12px;
+  font-family: var(--regular-font-family);
+  transition: all 0.3s ease;
+}
+
+.light {
+  background-color: var(--white);
+  border-color: var(--grey-300);
+}
+
+.dark {
+  background-color: var(--grey-800);
+  border-color: var(--grey-600);
+}
+
+/* Navigation Button */
+.navButton {
+  background: transparent;
+  border: 1px solid var(--grey-300);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.navButtonLight {
+  color: var(--grey-700);
+  border-color: var(--grey-300);
+}
+
+.navButtonLight:hover {
+  background-color: var(--grey-25);
+  border-color: var(--grey-400);
+}
+
+.navButtonDark {
+  color: var(--white-100);
+  border-color: var(--grey-600);
+  background-color: var(--grey-700);
+}
+
+.navButtonDark:hover {
+  background-color: var(--grey-600);
+}
+
+/* Steps Display */
+.stepsDisplay {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+  min-height: 40px;
+}
+
+/* Step Circle */
+.stepCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Step States */
+.completed {
+  background-color: var(--secondary);
+  color: var(--white);
+  border: 2px solid var(--secondary);
+}
+
+.active {
+  background-color: var(--white);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+}
+
+.upcoming {
+  background-color: var(--grey-25);
+  color: var(--grey-400);
+  border: 2px solid var(--grey-300);
+}
+
+/* Dark mode step states */
+.dark .active {
+  background-color: var(--grey-800);
+}
+
+.dark .upcoming {
+  background-color: var(--grey-700);
+  border-color: var(--grey-600);
+  color: var(--grey-400);
+}
+
+/* Step Label */
+.stepLabel {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  margin: 0 8px;
+}
+
+.stepLabelLight {
+  color: var(--secondary);
+}
+
+.stepLabelDark {
+  color: var(--secondary);
+}
+
+/* Progress Line */
+.progressLine {
+  height: 2px;
+  width: 40px;
+  background-color: var(--grey-300);
+  flex-shrink: 0;
+}
+
+/* Right Action */
+.rightAction {
+  flex-shrink: 0;
+}
+
+.actionIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--grey-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.rightActionLight .actionIcon {
+  background-color: var(--grey-25);
+  border-color: var(--grey-300);
+}
+
+.rightActionDark .actionIcon {
+  background-color: var(--grey-700);
+  border-color: var(--grey-600);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .mobileStepperContainer {
+    max-width: 100%;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  
+  .stepCircle {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .navButton {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .stepLabel {
+    font-size: 12px;
+  }
+  
+  .progressLine {
+    width: 30px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .mobileStepperContainer,
+  .stepCircle,
+  .navButton,
+  .actionIcon {
+    transition: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.navButton:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
