@@ -59,7 +59,6 @@ function App() {
         isDarkTheme ? styles.dsBodyContainerDark : styles.dsBodyContainerLight
       }
     >
-      <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
       <h1>Primary Button</h1>
       <div className={`${styles.dsContainer}`}>
         <PrimaryButton
@@ -181,6 +180,11 @@ function App() {
       </div>
 
       <h2>Text Inputs</h2>
+
+      <h2>Header Component</h2>
+      <div className={`${styles.dsContainer}`}>
+        <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
+      </div>
 
       <div className={`${styles.dsContainer}`}>
         <TextInput placeholder="Input Label" />
