@@ -41,22 +41,28 @@ function App() {
 
   // Toast functions
   const showSuccessToast = () => {
-    toast.success(
-      <CustomToast 
-        type="success" 
-        title="Insert your alert title here!" 
-        onClose={() => toast.dismiss()}
-        onAction={() => console.log("Action clicked")}
-      />, {
+  toast(
+    <CustomToast 
+      type="success" 
+      title="Insert your alert title here!" 
+      onClose={() => toast.dismiss()}
+      onAction={() => console.log("Action clicked")}
+    />, 
+    {
       position: "top-right",
       autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
+      hideProgressBar: true,
+      closeOnClick: false,
       pauseOnHover: true,
-      draggable: true,
+      draggable: false,
       closeButton: false,
-    });
-  };
+
+      // 🛑 KEY PART: Remove Toastify's default style
+      toastClassName: () => "custom-toast-wrapper",
+      bodyClassName: () => "custom-toast-body",
+    }
+  );
+};
 
   const showWarningToast = () => {
     toast.warning(
