@@ -62,6 +62,12 @@ function App() {
       bodyClassName: () => "custom-toast-body",
     }
   );
+
+      // 🛑 KEY PART: Remove Toastify's default style
+      toastClassName: () => "custom-toast-wrapper",
+      bodyClassName: () => "custom-toast-body",
+    }
+  );
 };
 
   const showWarningToast = () => {

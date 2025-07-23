@@ -1,6 +1,23 @@
 @import url("../../constants/colors.css");
 @import url("../../constants/fonts.css");
 
+/* Override Toastify default styles */
+.Toastify__toast {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Ensure no background or padding around your toast */
+.Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 .toast {
   display: flex;
   align-items: center;
@@ -13,6 +30,20 @@
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-left: 4px solid;
+}
+
+.custom-toast-wrapper {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Prevent Toastify body padding */
+.custom-toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .custom-toast-wrapper {
   background: none !important;
