@@ -3,6 +3,7 @@ import Header from "./components/Header/Header.component";
 import PrimaryButton from "./components/button/PrimaryButton.component";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomToast from "./components/Toast/CustomToast.component";
 // import light from "./assets/lightbulb-filament.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -40,35 +41,56 @@ function App() {
 
   // Toast functions
   const showSuccessToast = () => {
-    toast.success("Insert your alert title here!", {
+    toast.success(
+      <CustomToast 
+        type="success" 
+        title="Insert your alert title here!" 
+        onClose={() => toast.dismiss()}
+        onAction={() => console.log("Action clicked")}
+      />, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      closeButton: false,
     });
   };
 
   const showWarningToast = () => {
-    toast.warning("Insert your alert title here!", {
+    toast.warning(
+      <CustomToast 
+        type="warning" 
+        title="Insert your alert title here!" 
+        onClose={() => toast.dismiss()}
+        onAction={() => console.log("Action clicked")}
+      />, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      closeButton: false,
     });
   };
 
   const showErrorToast = () => {
-    toast.error("Insert your alert title here!", {
+    toast.error(
+      <CustomToast 
+        type="error" 
+        title="Insert your alert title here!" 
+        onClose={() => toast.dismiss()}
+        onAction={() => console.log("Action clicked")}
+      />, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      closeButton: false,
     });
   };
 
