@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Header from "./components/Header/Header.component";
 import PrimaryButton from "./components/button/PrimaryButton.component";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import light from "./assets/lightbulb-filament.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -35,6 +37,40 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [passwordVal, setPasswordVal] = useState("");
   const [currentStepperStep, setCurrentStepperStep] = useState(0);
+
+  // Toast functions
+  const showSuccessToast = () => {
+    toast.success("Insert your alert title here!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
+  const showWarningToast = () => {
+    toast.warning("Insert your alert title here!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
+  const showErrorToast = () => {
+    toast.error("Insert your alert title here!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   const handleThemeToggle = (isDark: boolean) => {
     setIsDarkTheme(isDark);
@@ -378,6 +414,51 @@ function App() {
       <div className={`${styles.dsContainer}`}>
         <Header onThemeToggle={handleThemeToggle} onLogout={handleLogout} />
       </div>
+
+      <h2>Toast Notifications</h2>
+      <div className={`${styles.dsContainer}`}>
+        <PrimaryButton
+          id="success-toast-button"
+          label="Show Success Toast"
+          isDisabled={false}
+          hasIcon={false}
+          onClick={showSuccessToast}
+        />
+      </div>
+
+      <div className={`${styles.dsContainer}`}>
+        <SecondaryButton
+          id="warning-toast-button"
+          label="Show Warning Toast"
+          isDisabled={false}
+          hasIcon={false}
+          onClick={showWarningToast}
+        />
+      </div>
+
+      <div className={`${styles.dsContainer}`}>
+        <DestructiveButton
+          id="error-toast-button"
+          label="Show Error Toast"
+          isDisabled={false}
+          hasIcon={false}
+          onClick={showErrorToast}
+        />
+      </div>
+
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={isDarkTheme ? "dark" : "light"}
+      />
     </div>
   );
 }
